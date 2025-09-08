@@ -1,69 +1,72 @@
 #include "philo.h"
 
 
-
-int return_int_msg(char *str, int val)
+void initiate_ph_arr(t_phil *arr_ph, int count)
 {
-	if (str)
+	int	i;
+	t_phil ph;
+
+	i = 0;
+	while (i < count)
 	{
-		while (*str)
-		{
-			write (1, str, 1);
-			str ++;
-		}
-		write (1, "\n", 1);
+		ph.name = i;
+		ph.fork = 0;
+		ph.dead = 0;
+		arr_ph[i] = ph;
+		i ++;
 	}
-	return (val);
 }
 
-
-int value_checks(t_settings *mysettings, int extra)
+int	spawn(t_phil *arr_ph, int count)
 {
-	if (mysettings->n_ph <= 0
-		|| mysettings->z_die <= 0
-		|| mysettings->z_eat <= 0
-		|| mysettings->z_sleep <= 0)
-		return (return_int_msg ("Values can not be less than 1", -1));
-	if (extra == 1 && mysettings->n_eat <= 0)
-		return (return_int_msg ("Values can not be less than 1", -1));
-	return (1);
-}
+	int	timer;
+	int	i;
 
-int	read_settings(t_settings *mysettings, char **argv)
-{
-	int		extra;
-	long	lval;
-
-	extra = 0;
-	lval = cnv_atol (argv[1]);
-	if (lval > INT_MAX)
-		return (return_int_msg ("phil count is too large", -1));
-	mysettings->n_ph = (int) lval;
-	mysettings->z_die = cnv_atol (argv[2]);
-	mysettings->z_eat = cnv_atol (argv[3]);
-	mysettings->z_sleep = cnv_atol (argv[4]);
-	if (argv[5])
+	i = 0;
+	while (1)
 	{
-		lval = cnv_atol (argv[5]);
-		if (lval > INT_MAX)
-			return (return_int_msg ("eat count is too large", -1));
-		mysettings->n_eat = (int) lval;
-		extra = 1;
+		timer += ()
+
+
 	}
-	return (value_checks (mysettings, extra));
+
+
 }
 
 int	main(int argc, char **argv)
 {
 	t_settings	mysettings;
+	t_phil		*arr_ph;
 
 	// if number of arguments is less than 4 return
-	if (argc < 5)
-		return (-1);
+	if (argc != 5 && argc != 6)
+		return (return_int_msg ("Invalid number of arguments", -1, NULL));
 
 	// store values in settings
-	if (read_settings (&mysettings, argv) != 1)
-		return (-1);
+	if (read_settings (&mysettings, argc, argv) != 1)
+		return (-2);
+
+	// create philosophers: malloc memory for count
+	arr_ph = malloc (sizeof (t_phil) * mysettings.n_ph);
+	if (!arr_ph)
+		return (return_int_msg ("failed to create philosophers", -3, NULL));
+
+	// initiate philosophers
+	initiate_ph_arr (arr_ph, mysettings.n_ph);
+
+	// create threads?
+	// start_thread ();
+
+	// function to start philo
+	spawn (arr_ph, argc - 1);
+
+
+
+
+
+
+
+
 
 
 	// test
@@ -71,10 +74,14 @@ int	main(int argc, char **argv)
 	printf ("z_die = %ld\n", mysettings.z_die);
 	printf ("z_eat = %ld\n", mysettings.z_eat);
 	printf ("z_sleep= %ld \n", mysettings.z_sleep);
-	printf ("n_eat = %d\n", mysettings.n_eat);
+	if (argc == 6)
+		printf ("n_eat = %d\n", mysettings.n_eat);
 
 
 
 
+	//
 
+	free (arr_ph);
 }
+
