@@ -53,9 +53,9 @@ int	read_settings(t_settings *mysettings, int argc, char **argv)
 	if (lval_arr[0] > INT_MAX)
 		return (return_int_msg ("Too many philosophers", -1, &lval_arr));
 	mysettings->n_ph = (int) lval_arr[0];
-	mysettings->z_die = lval_arr[1];
-	mysettings->z_eat = lval_arr[2];
-	mysettings->z_sleep = lval_arr[3];
+	mysettings->z_die = lval_arr[1] * 1000;
+	mysettings->z_eat = lval_arr[2] * 1000;
+	mysettings->z_sleep = lval_arr[3] * 1000;
 	if (argc == 6)
 	{
 		if (lval_arr[4] > INT_MAX)

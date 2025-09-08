@@ -17,26 +17,68 @@ void initiate_ph_arr(t_phil *arr_ph, int count)
 	}
 }
 
-int	spawn(t_phil *arr_ph, int count)
+int	mcs_reset(long *start)
 {
-	int	timer;
-	int	i;
+	struct timeval	time;
 
-	i = 0;
-	while (1)
+	if (gettimeofday(&time, NULL) != 0)
+		return (-1);
+	*start = (time.tv_sec + (time.tv_usec / 1000000)) * 1000;
+	return (1);
+}
+
+int	spawn(t_settings mysettings, t_phil *arr_ph, long start)
+{
+	long	time;
+	long	now;
+
+	time = 0;
+	while (time <= mysettings.z_die)
 	{
-		timer += ()
-
+		mcs_reset (&now);
+		time = now - start;
+		if (time == 0)
+			printf ("time %ld thinking! \n", time);
+		usleep (100);
 
 	}
+	mcs_reset (&now);
+	printf ("done thinking at %ld\n", now - start);
+	// print time stamp
 
+	
+	// while check forks
+		// eating 
+			// print time stamp 
+			// reset deadline 
+			// when eating is done break while
+
+	// while not forks
+		// thinking
+		// watch timer for dead
+		// if dead return
+
+
+	
+	// sleeping
+		// start time again?
+	printf ("for no warning %d", arr_ph->dead);
+	return (1);
 
 }
 
+
+// number of philosophers
+// time to die
+// time to eat
+// time to sleep
+// number of eats must
+
 int	main(int argc, char **argv)
 {
-	t_settings	mysettings;
-	t_phil		*arr_ph;
+	t_settings		mysettings;
+	t_phil			*arr_ph;
+	long			start;
 
 	// if number of arguments is less than 4 return
 	if (argc != 5 && argc != 6)
@@ -57,8 +99,11 @@ int	main(int argc, char **argv)
 	// create threads?
 	// start_thread ();
 
+	// start timer
+	mcs_reset (&start);
+
 	// function to start philo
-	spawn (arr_ph, argc - 1);
+	spawn (mysettings, arr_ph, start);
 
 
 
