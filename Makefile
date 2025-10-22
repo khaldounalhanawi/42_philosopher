@@ -1,14 +1,14 @@
 NAME = philo
-CFLAGS = -Wall -Wextra -Werror -g
-CLINKS = -I . -I ./libft
-CLIBS = -L ./libft -lft
+CFLAGS = -Wall -Wextra -Werror -pthread -g
+CLINKS = -I .
+#CLIBS = -L ./libft -lft
 CFILES = $(wildcard *.c)
 OBJS = $(CFILES:.c=.o)
 
 all : $(NAME)
 
 $(NAME) : $(OBJS) 
-	cc $(CFLAGS) $(CLIBS) $(CLINKS) $(OBJS) -o $(NAME)
+	cc $(CFLAGS) $(CLINKS) $(OBJS) -o $(NAME)
 
 %.o : %.c philo.h 
 	cc $(CFLAGS) $(CLINKS) -c $< -o $@
