@@ -1,22 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fn_simulate_III.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kalhanaw <kalhanaw@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/22 20:40:36 by kalhanaw          #+#    #+#             */
+/*   Updated: 2025/10/22 20:40:37 by kalhanaw         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 static int	reorganize_forks_lock(t_phil *phil)
 {
 	if (phil->id % 2 == 0)
 	{
-		if (pthread_mutex_lock(&phil->right_fork->fork) == -1)
+		if (pthread_mutex_lock(&phil->right_fork->fork) != 0)
 			return (-1);
 		print_status(FORK1, phil);
-		if (pthread_mutex_lock(&phil->left_fork->fork) == -1)
+		if (pthread_mutex_lock(&phil->left_fork->fork) != 0)
 			return (-1);
 		print_status(FORK2, phil);
 	}
 	else
 	{
-		if (pthread_mutex_lock(&phil->left_fork->fork) == -1)
+		if (pthread_mutex_lock(&phil->left_fork->fork) != 0)
 			return (-1);
 		print_status(FORK1, phil);
-		if (pthread_mutex_lock(&phil->right_fork->fork) == -1)
+		if (pthread_mutex_lock(&phil->right_fork->fork) != 0)
 			return (-1);
 		print_status(FORK2, phil);
 	}
@@ -27,16 +39,16 @@ static int	reorganize_forks_unlock(t_phil *phil)
 {
 	if (phil->id % 2 == 0)
 	{
-		if (pthread_mutex_unlock(&phil->right_fork->fork) == -1)
+		if (pthread_mutex_unlock(&phil->right_fork->fork) != 0)
 			return (-1);
-		if (pthread_mutex_unlock(&phil->left_fork->fork) == -1)
+		if (pthread_mutex_unlock(&phil->left_fork->fork) != 0)
 			return (-1);
 	}
 	else
 	{
-		if (pthread_mutex_unlock(&phil->left_fork->fork) == -1)
+		if (pthread_mutex_unlock(&phil->left_fork->fork) != 0)
 			return (-1);
-		if (pthread_mutex_unlock(&phil->right_fork->fork) == -1)
+		if (pthread_mutex_unlock(&phil->right_fork->fork) != 0)
 			return (-1);
 	}
 	return (1);

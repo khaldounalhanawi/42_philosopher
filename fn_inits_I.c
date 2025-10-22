@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fn_simulate_IIIII.c                                :+:      :+:    :+:   */
+/*   fn_inits_I.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kalhanaw <kalhanaw@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/22 20:40:42 by kalhanaw          #+#    #+#             */
-/*   Updated: 2025/10/22 20:40:43 by kalhanaw         ###   ########.fr       */
+/*   Created: 2025/10/22 20:40:16 by kalhanaw          #+#    #+#             */
+/*   Updated: 2025/10/22 20:40:17 by kalhanaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	simulation_finished(t_settings *mysettings)
+int	init_settings(t_settings *mysettings)
 {
-	int	val;
-	
-	val = 0;
-	if (get_int_mtx (&(mysettings->mtx_end), mysettings->end, &val) == -1)
+	mysettings->end = malloc (sizeof (int));
+	if (!mysettings->end)
 		return (-1);
-	return (val);
-}
-
-int	wait_for_all_start(t_settings *mysettings)
-{
-	int	val;
-
-	val = 0;
-	while (val == 0)
+	*(mysettings->end) = 0;
+	mysettings->start_sim = 0;
+	mysettings->all_threads_ready = 0;
+	if (init_forks (mysettings) != 1)
 	{
-		if (get_int_mtx (&mysettings->mtx_ready_to_start,
-			&mysettings->all_threads_ready, &val)
-			== -1)
-			return (-1);
+		free (mysettings->end);
+		return (-1);
 	}
+	if (init_phils (mysettings) != 1)
+	{
+		clear_forks (mysettings, mysettings->n_ph);
+		return (-1);
+	}
+	init_mutexes (mysettings);
 	return (1);
 }

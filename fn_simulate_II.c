@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fn_simulate_II.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kalhanaw <kalhanaw@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/22 20:40:31 by kalhanaw          #+#    #+#             */
+/*   Updated: 2025/10/22 20:40:31 by kalhanaw         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 int	sleep_action(t_phil *philosopher)
@@ -47,20 +59,16 @@ void	*dinner_sim(void *data)
 	philosopher = (t_phil *)data;
 	error = malloc (sizeof (int));
 	if (!error)
-		return (NULL); // really?
+	{
+		printf ("couldn't malloc error return\n");
+		return (NULL);
+	}
 	*error = -1;
 	if (wait_for_all_start (philosopher->mysettings) == -1)
 		return (error);
 	if (philosopher->id % 2 == 1)
-	{
-		if (usleep(philosopher->mysettings->z_die / 4) == -1)
-			return (error);
-	}
+		usleep(philosopher->mysettings->z_die / 4);
 	if (start_dinner (philosopher) == -1)
 		return (error);
 	return (NULL);
 }
-
-
-// pthread correct == 0!!!!!
-// double check the times to fix the headache

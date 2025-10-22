@@ -125,4 +125,14 @@ int			incriment_int_mtx(t_mutex *mtx, int *value);
 int			eat_action(t_phil *phil);
 int			think_action(t_phil *philosopher);
 
+// fn_inits_II.c
+int			init_forks(t_settings *mysettings);
+int			init_phils(t_settings *mysettings);
+int			init_mutexes(t_settings *mysettings);
+
+// fn_cleanup.c
+void		clear_mysettings(t_settings	*mysettings);
+void		clear_forks(t_settings	*mysettings, int pos);
+
+
 # endif

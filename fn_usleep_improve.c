@@ -1,8 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fn_usleep_improve.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kalhanaw <kalhanaw@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/22 20:40:46 by kalhanaw          #+#    #+#             */
+/*   Updated: 2025/10/22 20:40:46 by kalhanaw         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
-/*
- while loop the time
- */
 static int	heavy_clock(unsigned long long	start,
 					unsigned long long	input,
 					t_settings *mysettings)
@@ -23,13 +32,7 @@ static int	heavy_clock(unsigned long long	start,
 	}
 	return (1);
 }
-/*	clean	*/
 
-/*
- 1- uses Usleep until time is small
- 1.1- constantly checking for finish of sim
- 2- when time is smaller than 1000 mcs it uses while for accuracy
- */
 int	improved_usleep(unsigned long long input, t_settings *mysettings)
 {
 	unsigned long long	now;
@@ -42,10 +45,7 @@ int	improved_usleep(unsigned long long input, t_settings *mysettings)
 	{
 		simulation_finish = simulation_finished (mysettings);
 		if (simulation_finish != 0)
-		{
-			// printf("usleep interrupted early (reason: sim finished)\n");
 			return (simulation_finish);
-		}
 		if (reset_microsecond (&now) == -1)
 			return (-1);
 		if (input - (now - start) > 500)
@@ -58,5 +58,5 @@ int	improved_usleep(unsigned long long input, t_settings *mysettings)
 	}
 	return (1);
 }
-/*	clean	*/
+
 
