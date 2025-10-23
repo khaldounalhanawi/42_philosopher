@@ -6,7 +6,7 @@
 /*   By: kalhanaw <kalhanaw@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:40:28 by kalhanaw          #+#    #+#             */
-/*   Updated: 2025/10/22 20:40:28 by kalhanaw         ###   ########.fr       */
+/*   Updated: 2025/10/23 09:57:17 by kalhanaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	clear_threads_range(t_settings *mysettings, int start, int end)
 {
-
 	while (start < end)
 	{
 		pthread_detach (mysettings->arr_phil[start].thread);
@@ -29,18 +28,18 @@ static int	create_all_threads(t_settings *mysettings)
 	i = 0;
 	while (i < mysettings->n_ph)
 	{
-		if( pthread_create (&(mysettings->arr_phil[i].thread),
-			NULL, dinner_sim,
-			(void *)&mysettings->arr_phil[i]) != 0)
-			{
-				clear_threads_range (mysettings, 0, i);
-				return (-1);
-			}
+		if (pthread_create (&(mysettings->arr_phil[i].thread),
+				NULL, dinner_sim,
+				(void *)&mysettings->arr_phil[i]) != 0)
+		{
+			clear_threads_range (mysettings, 0, i);
+			return (-1);
+		}
 		i ++;
 	}
 	if (pthread_create (&(mysettings->monitor),
-				NULL, death_monitor,
-				(void *)mysettings) != 0)
+			NULL, death_monitor,
+			(void *)mysettings) != 0)
 	{
 		clear_threads_range (mysettings, 0, mysettings->n_ph);
 		return (-1);
@@ -70,12 +69,12 @@ static int	set_last_time_eat(t_settings *mysettings)
 static int	join_all_threads(t_settings *mysettings)
 {
 	int	i;
-	
+
 	i = 0;
 	while (i < mysettings->n_ph)
 	{
-		if( pthread_join (mysettings->arr_phil[i].thread,
-			NULL) != 0)
+		if (pthread_join (mysettings->arr_phil[i].thread,
+				NULL) != 0)
 		{
 			clear_threads_range (mysettings, i, mysettings->n_ph);
 			return (-1);
@@ -84,7 +83,7 @@ static int	join_all_threads(t_settings *mysettings)
 	}
 	if (pthread_join (mysettings->monitor,
 			NULL) != 0)
-			return (-1);
+		return (-1);
 	return (1);
 }
 
@@ -97,7 +96,8 @@ int	simulate(t_settings *mysettings)
 		clear_threads_range (mysettings, 0, mysettings->n_ph);
 		return (return_int_msg ("couldn't read time: start_sim", -1, NULL));
 	}
-	if (set_int_mtx (&(mysettings->mtx_ready_to_start), & (mysettings->all_threads_ready), 1) != 1)
+	if (set_int_mtx (&(mysettings->mtx_ready_to_start),
+			&(mysettings->all_threads_ready), 1) != 1)
 	{
 		clear_threads_range (mysettings, 0, mysettings->n_ph);
 		return (return_int_msg ("init sync failure", -1, NULL));

@@ -6,7 +6,7 @@
 /*   By: kalhanaw <kalhanaw@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:40:48 by kalhanaw          #+#    #+#             */
-/*   Updated: 2025/10/22 20:40:49 by kalhanaw         ###   ########.fr       */
+/*   Updated: 2025/10/23 09:46:37 by kalhanaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,3 @@ int	main(int argc, char **argv)
 	clear_mysettings (&mysettings);
 	return (1);
 }
-

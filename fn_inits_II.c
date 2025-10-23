@@ -6,7 +6,7 @@
 /*   By: kalhanaw <kalhanaw@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:40:19 by kalhanaw          #+#    #+#             */
-/*   Updated: 2025/10/22 20:40:20 by kalhanaw         ###   ########.fr       */
+/*   Updated: 2025/10/22 21:05:52 by kalhanaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	assign_forks(t_settings *mysettings, int pos)
 	myphil->right_fork = &mysettings->arr_forks[(pos + 1) % count];
 }
 
-int init_phils(t_settings *mysettings)
+int	init_phils(t_settings *mysettings)
 {
 	int	i;
 

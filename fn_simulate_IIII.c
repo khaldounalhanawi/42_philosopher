@@ -6,7 +6,7 @@
 /*   By: kalhanaw <kalhanaw@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:40:39 by kalhanaw          #+#    #+#             */
-/*   Updated: 2025/10/22 20:40:39 by kalhanaw         ###   ########.fr       */
+/*   Updated: 2025/10/23 10:00:12 by kalhanaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 static int	signal_death(t_phil *phil)
 {
-	if (print_status(DIED, phil) == -1)
+	if (print_status (DIED, phil) == -1)
 		return (-1);
-	if (set_int_mtx (&(phil->mysettings->mtx_end), phil->mysettings->end,1) == -1)
+	if (set_int_mtx (&(phil->mysettings->mtx_end),
+			phil->mysettings->end, 1) == -1)
 		return (-1);
 	return (1);
 }
@@ -27,7 +28,7 @@ static int	die_check(t_phil *phil)
 	unsigned long long	now;
 
 	if (get_long_mtx (&(phil->mysettings->mtx_last_eat_time),
-		&(phil->last_meal_time), &last) == -1)
+			&(phil->last_meal_time), &last) == -1)
 		return (-1);
 	if (last == 0)
 		return (0);
@@ -42,16 +43,18 @@ static int	die_check(t_phil *phil)
 
 static int	are_all_full(t_settings *mysettings)
 {
-	int	k;
+	int		k;
 	t_mutex	*this_mtx;
-	
+
 	k = 0;
 	this_mtx = &(mysettings->mtx_full_philosophers);
-	if (get_int_mtx (this_mtx, &(mysettings->full_philosophers_count),&k) == -1)
+	if (get_int_mtx (this_mtx,
+			&(mysettings->full_philosophers_count),
+			&k) == -1)
 		return (-1);
 	if (k == mysettings->n_ph)
 	{
-		printf ("all is full! ********\n");
+		printf ("all are full! ********\n");
 		if (set_int_mtx (&(mysettings->mtx_end), mysettings->end, 1) == -1)
 			return (-1);
 		return (1);
@@ -87,17 +90,14 @@ static int	run_monitor(t_settings *mysettings)
 void	*death_monitor(void *p)
 {
 	t_settings	*mysettings;
-	int			*error;
 	int			monitor_val;
 
 	mysettings = (t_settings *) p;
-	error = malloc (sizeof (int));
-	*error = -1;
 	if (wait_for_all_start (mysettings) == -1)
-		return (error);
+		return (NULL);
 	monitor_val = run_monitor (mysettings);
 	if (monitor_val == -1)
-		return (error);
+		return (NULL);
 	else
 		return (NULL);
 	return (NULL);

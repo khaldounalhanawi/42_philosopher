@@ -6,14 +6,12 @@
 /*   By: kalhanaw <kalhanaw@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:40:10 by kalhanaw          #+#    #+#             */
-/*   Updated: 2025/10/22 20:40:11 by kalhanaw         ###   ########.fr       */
+/*   Updated: 2025/10/23 09:38:39 by kalhanaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-
-//	return : 1	on success | 0	on failure
 int	fn_isdigit(char *str)
 {
 	int	i;
@@ -21,7 +19,7 @@ int	fn_isdigit(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if ((str[i] < '0' || str[i] > '9') 
+		if ((str[i] < '0' || str[i] > '9')
 			&& (str[i] != '-' && str[i] != '+'))
 			return (0);
 		i ++;
@@ -81,14 +79,13 @@ long	*cnv_strarr_long(int argc, char **argv)
 	while (i + 1 < argc)
 	{
 		llval = cnv_atol(argv[i + 1]);
-		if (llval > LONG_MAX)	
+		if (llval > LONG_MAX)
 		{
 			free (arr);
 			return (return_null_str("long value too large\n"));
 		}
-		arr[i] = (long) (llval);
+		arr[i] = (long)(llval);
 		i++;
 	}
 	return (arr);
 }
-/*	long* malloced	*/

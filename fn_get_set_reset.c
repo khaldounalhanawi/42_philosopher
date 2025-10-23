@@ -6,7 +6,7 @@
 /*   By: kalhanaw <kalhanaw@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:40:14 by kalhanaw          #+#    #+#             */
-/*   Updated: 2025/10/22 20:40:14 by kalhanaw         ###   ########.fr       */
+/*   Updated: 2025/10/22 21:03:31 by kalhanaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,30 +50,30 @@ int	reset_microsecond(unsigned long long *start)
 
 	if (gettimeofday(&time, NULL) != 0)
 		return (-1);
-	*start = (unsigned long long) (time.tv_sec * 1000000 + time.tv_usec);
+	*start = (unsigned long long)(time.tv_sec * 1000000 + time.tv_usec);
 	return (1);
 }
 
-int	get_long_mtx(t_mutex *m1, unsigned long long *read, unsigned long long *value)
+int	get_long_mtx(t_mutex *m1,
+		unsigned long long *read,
+		unsigned long long *value)
 {
 	if (!m1)
 		printf ("bad m1 mutex\n");
 	if (pthread_mutex_lock (m1) != 0)
 		return (-1);
-	// printf ("good so far\n");
 	*value = *read;
 	if (pthread_mutex_unlock (m1) != 0)
-		return (-1);	
+		return (-1);
 	return (1);
 }
-/*	clean	*/
 
-int incriment_int_mtx(t_mutex *mtx, int *value)
+int	incriment_int_mtx(t_mutex *mtx, int *value)
 {
 	if (pthread_mutex_lock(mtx) != 0)
-		return -1;
+		return (-1);
 	(*value)++;
 	if (pthread_mutex_unlock(mtx) != 0)
-		return -1;
-	return 1;
+		return (-1);
+	return (1);
 }

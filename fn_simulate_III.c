@@ -6,7 +6,7 @@
 /*   By: kalhanaw <kalhanaw@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:40:36 by kalhanaw          #+#    #+#             */
-/*   Updated: 2025/10/22 20:40:37 by kalhanaw         ###   ########.fr       */
+/*   Updated: 2025/10/22 21:14:24 by kalhanaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@ static int	reorganize_forks_lock(t_phil *phil)
 {
 	if (phil->id % 2 == 0)
 	{
-		if (pthread_mutex_lock(&phil->right_fork->fork) != 0)
+		if (pthread_mutex_lock (&(phil->right_fork->fork)) != 0)
 			return (-1);
-		print_status(FORK1, phil);
-		if (pthread_mutex_lock(&phil->left_fork->fork) != 0)
+		print_status(FORK, phil);
+		if (pthread_mutex_lock (&(phil->left_fork->fork)) != 0)
 			return (-1);
-		print_status(FORK2, phil);
+		print_status(FORK, phil);
 	}
 	else
 	{
-		if (pthread_mutex_lock(&phil->left_fork->fork) != 0)
+		if (pthread_mutex_lock(&(phil->left_fork->fork)) != 0)
 			return (-1);
-		print_status(FORK1, phil);
-		if (pthread_mutex_lock(&phil->right_fork->fork) != 0)
+		print_status (FORK, phil);
+		if (pthread_mutex_lock(&(phil->right_fork->fork)) != 0)
 			return (-1);
-		print_status(FORK2, phil);
+		print_status(FORK, phil);
 	}
 	return (1);
 }
@@ -39,16 +39,15 @@ static int	reorganize_forks_unlock(t_phil *phil)
 {
 	if (phil->id % 2 == 0)
 	{
-		if (pthread_mutex_unlock(&phil->right_fork->fork) != 0)
-			return (-1);
-		if (pthread_mutex_unlock(&phil->left_fork->fork) != 0)
+		if (pthread_mutex_unlock (&phil->right_fork->fork) != 0
+			|| pthread_mutex_unlock (&phil->left_fork->fork) != 0)
 			return (-1);
 	}
 	else
 	{
-		if (pthread_mutex_unlock(&phil->left_fork->fork) != 0)
+		if (pthread_mutex_unlock (&(phil->left_fork->fork)) != 0)
 			return (-1);
-		if (pthread_mutex_unlock(&phil->right_fork->fork) != 0)
+		if (pthread_mutex_unlock (&(phil->right_fork->fork)) != 0)
 			return (-1);
 	}
 	return (1);
@@ -61,7 +60,7 @@ int	report_full(t_phil *phil)
 		&& phil->meals_counter >= phil->mysettings->n_eat)
 	{
 		if (incriment_int_mtx(&(phil->mysettings->mtx_full_philosophers),
-						&(phil->mysettings->full_philosophers_count)) == -1)
+				&(phil->mysettings->full_philosophers_count)) == -1)
 			return (-1);
 		phil->full = 1;
 		return (2);
@@ -73,7 +72,7 @@ int	report_full(t_phil *phil)
 int	eat_action(t_phil *phil)
 {
 	int	full_status;
-	
+
 	if (simulation_finished (phil->mysettings) == -1)
 		return (-1);
 	if (reorganize_forks_lock (phil) == -1)
@@ -99,8 +98,8 @@ int	eat_action(t_phil *phil)
 int	think_action(t_phil *philosopher)
 {
 	unsigned long long	extra_time;
-	int	global_end_status;
-	
+	int					global_end_status;
+
 	global_end_status = simulation_finished (philosopher->mysettings);
 	if (global_end_status != 0)
 		return (global_end_status);
@@ -111,9 +110,9 @@ int	think_action(t_phil *philosopher)
 	{
 		extra_time = philosopher->mysettings->z_eat / 2;
 		if (extra_time < 0)
-			extra_time = 0;
+			extra_time = 0 ;
 	}
-	if (improved_usleep (extra_time , philosopher->mysettings) == -1)
+	if (improved_usleep (extra_time, philosopher->mysettings) == -1)
 		return (-1);
 	return (1);
 }

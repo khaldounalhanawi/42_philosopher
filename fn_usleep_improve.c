@@ -6,19 +6,19 @@
 /*   By: kalhanaw <kalhanaw@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:40:46 by kalhanaw          #+#    #+#             */
-/*   Updated: 2025/10/22 20:40:46 by kalhanaw         ###   ########.fr       */
+/*   Updated: 2025/10/22 21:05:31 by kalhanaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int	heavy_clock(unsigned long long	start,
-					unsigned long long	input,
+static int	heavy_clock(unsigned long long start,
+					unsigned long long input,
 					t_settings *mysettings)
 {
 	unsigned long long	now;
 	int					simulation_finish;
-	
+
 	if (reset_microsecond (&now) == -1)
 		return (-1);
 	while (now - start < input)
@@ -27,7 +27,7 @@ static int	heavy_clock(unsigned long long	start,
 		if (simulation_finish != 0)
 			return (simulation_finish);
 		if (reset_microsecond (&now) == -1)
-				return (-1);
+			return (-1);
 		usleep (100);
 	}
 	return (1);
@@ -58,5 +58,3 @@ int	improved_usleep(unsigned long long input, t_settings *mysettings)
 	}
 	return (1);
 }
-
-
