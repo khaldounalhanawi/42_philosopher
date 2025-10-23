@@ -20,6 +20,7 @@ int	init_settings(t_settings *mysettings)
 	*(mysettings->end) = 0;
 	mysettings->start_sim = 0;
 	mysettings->all_threads_ready = 0;
+	mysettings->full_philosophers_count = 0;
 	if (init_forks (mysettings) != 1)
 	{
 		free (mysettings->end);

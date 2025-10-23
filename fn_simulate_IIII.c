@@ -69,6 +69,7 @@ static int	run_monitor(t_settings *mysettings)
 	int			death;
 
 	death = 0;
+	all_are_full = 0;
 	while (simulation_finished(mysettings) == 0)
 	{
 		i = 0;

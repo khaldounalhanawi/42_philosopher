@@ -53,12 +53,12 @@ typedef struct s_phil
 
 struct s_settings
 {
-	int					n_ph;
 	unsigned long long	z_die;
 	unsigned long long	z_eat;
 	unsigned long long	z_sleep;
-	int					n_eat;
 	unsigned long long	start_sim;
+	int					n_ph;
+	int					n_eat;
 	int					*end;
 	int					all_threads_ready;
 	int					full_philosophers_count;
