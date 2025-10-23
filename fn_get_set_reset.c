@@ -6,7 +6,7 @@
 /*   By: kalhanaw <kalhanaw@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:40:14 by kalhanaw          #+#    #+#             */
-/*   Updated: 2025/10/22 21:03:31 by kalhanaw         ###   ########.fr       */
+/*   Updated: 2025/10/23 10:04:06 by kalhanaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	set_int_mtx(t_mutex *m1, int *read, int value)
 		return (-1);
 	return (1);
 }
-/*	clean	*/
 
 int	reset_microsecond(unsigned long long *start)
 {

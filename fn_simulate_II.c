@@ -6,13 +6,13 @@
 /*   By: kalhanaw <kalhanaw@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:40:31 by kalhanaw          #+#    #+#             */
-/*   Updated: 2025/10/23 09:56:54 by kalhanaw         ###   ########.fr       */
+/*   Updated: 2025/10/23 10:11:06 by kalhanaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	sleep_action(t_phil *philosopher)
+static int	sleep_action(t_phil *philosopher)
 {
 	int	global_end_status;
 

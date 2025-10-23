@@ -6,7 +6,7 @@
 /*   By: kalhanaw <kalhanaw@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:49:41 by kalhanaw          #+#    #+#             */
-/*   Updated: 2025/10/22 21:14:48 by kalhanaw         ###   ########.fr       */
+/*   Updated: 2025/10/23 10:13:34 by kalhanaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ struct s_settings
 	t_phil				*arr_phil;
 	pthread_t			monitor;
 };
-// number die eat sleep count
+
 typedef struct s_args
 {
 	t_settings			mysettings;
@@ -90,21 +90,28 @@ typedef enum e_state
 	FORK
 }	t_state;
 
-/*fn_convertors*/
+// fn_converters.c
+int			fn_isdigit(char *str);
 long long	cnv_atol(const char *str);
 long		*cnv_strarr_long(int argc, char **argv);
-int			fn_isdigit(char *str);
 
-/*fn_return_functions*/
+// fn_return_functions.c
 int			return_int_msg(char *str, int val, long **lval_arr);
 void		*return_null_str(char *str);
 int			print_status(t_state state, t_phil *phil);
 
-/*fn_read_functions*/
+// fn_read_functions.c
 int			read_settings(t_settings *mysettings, int argc, char **argv);
-/*fn_inits*/
+
+// fn_inits_I.c
 int			init_settings(t_settings *mysettings);
-/*fn_sleep_improve*/
+
+// fn_inits_II.c
+int			init_forks(t_settings *mysettings);
+int			init_phils(t_settings *mysettings);
+int			init_mutexes(t_settings *mysettings);
+
+// fn_sleep_improve.c
 int			improved_usleep(unsigned long long input, t_settings *mysettings);
 int			simulation_finished(t_settings *mysettings);
 
@@ -115,20 +122,28 @@ int			reset_microsecond(unsigned long long *start);
 int			get_long_mtx(t_mutex *m1,
 				unsigned long long *read,
 				unsigned long long *value);
+int			incriment_int_mtx(t_mutex *mtx, int *value);
+
+// fn_simulate_I.c
 int			simulate(t_settings *mysettings);
+
+// fn_simulate_II.c
 void		*dinner_sim(void *data);
+
+// fn_simulate_III.c
+int			think_action(t_phil *philosopher);
+int			eat_action(t_phil *phil);
+
+// fn_simulate_IIII.c
 void		*death_monitor(void *p);
+
+// fn_simulate_IIIII.c
 int			simulation_finished(t_settings *mysettings);
 int			wait_for_all_start(t_settings *mysettings);
-int			incriment_int_mtx(t_mutex *mtx, int *value);
-int			eat_action(t_phil *phil);
-int			think_action(t_phil *philosopher);
-// fn_inits_II.c
-int			init_forks(t_settings *mysettings);
-int			init_phils(t_settings *mysettings);
-int			init_mutexes(t_settings *mysettings);
+
 // fn_cleanup.c
 void		clear_mysettings(t_settings	*mysettings);
 void		clear_forks(t_settings	*mysettings, int pos);
+void		clear_threads_range(t_settings *mysettings, int start, int end);
 
 #endif

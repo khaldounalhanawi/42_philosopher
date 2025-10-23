@@ -6,13 +6,13 @@
 /*   By: kalhanaw <kalhanaw@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:40:19 by kalhanaw          #+#    #+#             */
-/*   Updated: 2025/10/22 21:05:52 by kalhanaw         ###   ########.fr       */
+/*   Updated: 2025/10/23 10:05:59 by kalhanaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	fork_create(t_fork *myfork)
+static int	fork_create(t_fork *myfork)
 {
 	if (pthread_mutex_init (&myfork->fork, NULL) != 0)
 		return (return_int_msg("failed to initiate fork\n", -1, NULL));

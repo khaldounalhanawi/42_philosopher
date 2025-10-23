@@ -6,7 +6,7 @@
 /*   By: kalhanaw <kalhanaw@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:40:36 by kalhanaw          #+#    #+#             */
-/*   Updated: 2025/10/22 21:14:24 by kalhanaw         ###   ########.fr       */
+/*   Updated: 2025/10/23 10:11:50 by kalhanaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	reorganize_forks_unlock(t_phil *phil)
 	return (1);
 }
 
-int	report_full(t_phil *phil)
+static int	report_full(t_phil *phil)
 {
 	phil->meals_counter ++;
 	if (phil->mysettings->n_eat != -1

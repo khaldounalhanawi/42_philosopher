@@ -6,20 +6,11 @@
 /*   By: kalhanaw <kalhanaw@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:40:28 by kalhanaw          #+#    #+#             */
-/*   Updated: 2025/10/23 09:57:17 by kalhanaw         ###   ########.fr       */
+/*   Updated: 2025/10/23 10:11:04 by kalhanaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	clear_threads_range(t_settings *mysettings, int start, int end)
-{
-	while (start < end)
-	{
-		pthread_detach (mysettings->arr_phil[start].thread);
-		start++ ;
-	}
-}
 
 static int	create_all_threads(t_settings *mysettings)
 {

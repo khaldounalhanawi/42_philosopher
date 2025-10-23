@@ -6,7 +6,7 @@
 /*   By: kalhanaw <kalhanaw@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:40:05 by kalhanaw          #+#    #+#             */
-/*   Updated: 2025/10/23 09:58:43 by kalhanaw         ###   ########.fr       */
+/*   Updated: 2025/10/23 10:14:08 by kalhanaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,13 @@ void	clear_mysettings(t_settings	*mysettings)
 		printf ("failed to destroy: mtx_print\n");
 	clear_forks (mysettings, mysettings->n_ph);
 	free (mysettings->arr_phil);
+}
+
+void	clear_threads_range(t_settings *mysettings, int start, int end)
+{
+	while (start < end)
+	{
+		pthread_detach (mysettings->arr_phil[start].thread);
+		start++ ;
+	}
 }
