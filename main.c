@@ -6,7 +6,7 @@
 /*   By: kalhanaw <kalhanaw@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:40:48 by kalhanaw          #+#    #+#             */
-/*   Updated: 2025/10/23 09:46:37 by kalhanaw         ###   ########.fr       */
+/*   Updated: 2025/10/23 10:26:58 by kalhanaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static int	run_solo(t_settings *mysettings)
 {
-	printf ("000000 0 has taken a fork\n");
+	printf ("000000 1 has taken a fork\n");
 	usleep (mysettings->z_die);
-	printf ("%06llu 0 has died\n", mysettings->z_die);
+	printf ("%06llu 1 has died\n", mysettings->z_die);
 	return (1);
 }
 
