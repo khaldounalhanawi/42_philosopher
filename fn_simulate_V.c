@@ -32,6 +32,7 @@ int	wait_for_all_start(t_settings *mysettings)
 		if (get_int_mtx (&mysettings->mtx_ready_to_start,
 				&mysettings->all_threads_ready, &val) == -1)
 			return (-1);
+		usleep(10);
 	}
 	return (1);
 }
