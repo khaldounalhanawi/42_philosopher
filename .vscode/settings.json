@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "fn_usleep_improve": "c",
-        "*.old": "c",
-        "pthread.h": "c",
-        "main": "c"
-    }
-}

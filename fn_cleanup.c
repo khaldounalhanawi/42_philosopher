@@ -29,6 +29,8 @@ void	clear_forks(t_settings	*mysettings, int pos)
 void	clear_mysettings(t_settings	*mysettings)
 {
 	free (mysettings->end);
+	if (pthread_mutex_destroy (&(mysettings->mtx_time)) != 0)
+		printf ("failed to destroy: mtx_time\n");
 	if (pthread_mutex_destroy (&(mysettings->mtx_full_philosophers)) != 0)
 		printf ("failed to destroy: mtx_full_philosophers\n");
 	if (pthread_mutex_destroy (&(mysettings->mtx_ready_to_start)) != 0)

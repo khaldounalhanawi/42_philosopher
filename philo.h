@@ -62,6 +62,7 @@ struct s_settings
 	int					*end;
 	int					all_threads_ready;
 	int					full_philosophers_count;
+	t_mutex				mtx_time;
 	t_mutex				mtx_full_philosophers;
 	t_mutex				mtx_ready_to_start;
 	t_mutex				mtx_end;

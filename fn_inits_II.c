@@ -80,6 +80,8 @@ int	init_mutexes(t_settings *mysettings)
 		return (return_int_msg("failed to initiate mutex\n", -1, NULL));
 	if (pthread_mutex_init (&(mysettings->mtx_print), NULL) != 0)
 		return (return_int_msg("failed to initiate mutex\n", -1, NULL));
+	if (pthread_mutex_init (&(mysettings->mtx_time), NULL) != 0)
+		return (return_int_msg("failed to initiate mutex\n", -1, NULL));
 	if (pthread_mutex_init (&(mysettings->mtx_full_philosophers), NULL) != 0)
 		return (return_int_msg("failed to initiate mutex\n", -1, NULL));
 	if (pthread_mutex_init (&(mysettings->mtx_last_eat_time), NULL) != 0)

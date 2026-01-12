@@ -12,8 +12,8 @@ CFILES = \
 			fn_simulate_I.c \
 			fn_simulate_II.c \
 			fn_simulate_III.c \
-			fn_simulate_IV.c \
-			fn_simulate_V.c \
+			fn_simulate_IIII.c \
+			fn_simulate_IIIII.c \
 			fn_usleep_improve.c \
 			main.c
 OBJS = $(CFILES:.c=.o)
