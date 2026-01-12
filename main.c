@@ -3,51 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kalhanaw <kalhanaw@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: kalhanaw <kalhanaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/22 20:40:48 by kalhanaw          #+#    #+#             */
-/*   Updated: 2025/10/23 10:26:58 by kalhanaw         ###   ########.fr       */
+/*   Created: 2025/08/26 18:08:54 by kalhanaw          #+#    #+#             */
+/*   Updated: 2025/09/01 14:26:02 by kalhanaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "fdf.h"
 
-static int	run_solo(t_settings *mysettings)
-{
-	printf ("000000 1 has taken a fork\n");
-	usleep (mysettings->z_die);
-	printf ("%06llu 1 has died\n", mysettings->z_die);
-	return (1);
-}
-
-static int	handle_special_cases(t_settings *mysettings)
-{
-	if (mysettings->n_eat != -1 && mysettings->n_eat == 0)
-	{
-		printf ("Number of meals is 0\n");
-		return (-1);
-	}
-	if (mysettings->n_ph == 1)
-		return (run_solo (mysettings));
-	return (0);
-}
+static void	checker(int argc, char **argv);
 
 int	main(int argc, char **argv)
 {
-	t_settings	mysettings;
+	t_map	*mymap;
+	t_point	**points;
+	int		h;
+	int		w;
 
-	if (argc != 5 && argc != 6)
-		return (return_int_msg ("Invalid number of arguments", -1, NULL));
-	if (read_settings (&mysettings, argc, argv) != 1)
-		return (-2);
-	if (init_settings (&mysettings) != 1)
-		return (-3);
-	if (handle_special_cases (&mysettings) != 0)
+	checker(argc, argv);
+	mymap = mapfromfile(argv[1]);
+	if (!mymap)
+		return (-1);
+	points = NULL;
+	points = grid_to_points(points, mymap);
+	if (!points)
 	{
-		clear_mysettings (&mysettings);
-		return (-4);
+		free_grid(mymap);
+		free(mymap);
+		return (-1);
 	}
-	simulate (&mysettings);
-	clear_mysettings (&mysettings);
-	return (1);
+	w = mymap->width;
+	h = mymap->height;
+	free_grid(mymap);
+	free(mymap);
+	graphics_mlx(points, w, h);
+}
+
+static void	checker(int argc, char **argv)
+{
+	if (argc != 2)
+		error_exit("Unacceptable number of arguments");
+	if (!argv | !argv[1])
+		error_exit("Unavailable fdf file");
 }
