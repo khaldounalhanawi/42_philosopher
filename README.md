@@ -27,10 +27,10 @@ The simulation demonstrates fundamental concepts in concurrent programming:
 
 ## 🛠️ Implementation Details
 
-### **Microsecond Precision Timing**
+### 1. **Microsecond Precision Timing**
 Times internally stored in microseconds (converted from ms input), ensuring accuracy and meeting the 10ms death detection requirement.
 
-### **Custom Sleep Function**
+### 2. **Custom Sleep Function**
 Polling-based sleep that checks simulation state during delays, using adaptive intervals (500μs/100μs) for precision while allowing quick thread termination.
 
 #### 3. **Deadlock Prevention Strategy**
