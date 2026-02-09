@@ -1,4 +1,4 @@
-# Philosophers
+# Philosopher
 
 A multithreaded simulation of the Dining Philosophers synchronization problem using POSIX threads and mutexes.
 
