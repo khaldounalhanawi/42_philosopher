@@ -6,7 +6,7 @@
 /*   By: kalhanaw <kalhanaw@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:49:41 by kalhanaw          #+#    #+#             */
-/*   Updated: 2025/10/23 10:13:34 by kalhanaw         ###   ########.fr       */
+/*   Updated: 2026/02/09 11:41:47 by kalhanaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,6 @@ struct s_settings
 	t_phil				*arr_phil;
 	pthread_t			monitor;
 };
-
-typedef struct s_args
-{
-	t_settings			mysettings;
-	t_phil				*arr_ph;
-	unsigned long long	start;
-	int					pos;
-}	t_args;
 
 typedef enum e_state
 {

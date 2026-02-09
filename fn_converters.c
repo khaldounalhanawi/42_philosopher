@@ -6,7 +6,7 @@
 /*   By: kalhanaw <kalhanaw@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:40:10 by kalhanaw          #+#    #+#             */
-/*   Updated: 2025/10/23 09:38:39 by kalhanaw         ###   ########.fr       */
+/*   Updated: 2026/02/09 11:40:05 by kalhanaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ long	*cnv_strarr_long(int argc, char **argv)
 	if (!fn_isdigit_arr (argc, argv))
 		return (return_null_str ("Bad input: Input not digits\n"));
 	i = 0;
-	arr = malloc (sizeof (long *) * argc - 1);
+	arr = malloc (sizeof (long) * (argc - 1));
 	if (!arr)
 		return (return_null_str("fialed to malloc long array\n"));
 	while (i + 1 < argc)

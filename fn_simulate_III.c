@@ -6,7 +6,7 @@
 /*   By: kalhanaw <kalhanaw@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:40:36 by kalhanaw          #+#    #+#             */
-/*   Updated: 2025/10/23 10:11:50 by kalhanaw         ###   ########.fr       */
+/*   Updated: 2026/02/09 11:43:20 by kalhanaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,7 @@ int	think_action(t_phil *philosopher)
 		return (-1);
 	extra_time = 0;
 	if (philosopher->mysettings->n_ph % 2 != 0)
-	{
 		extra_time = philosopher->mysettings->z_eat / 2;
-		if (extra_time < 0)
-			extra_time = 0 ;
-	}
 	if (improved_usleep (extra_time, philosopher->mysettings) == -1)
 		return (-1);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: kalhanaw <kalhanaw@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:40:16 by kalhanaw          #+#    #+#             */
-/*   Updated: 2025/10/22 20:52:42 by kalhanaw         ###   ########.fr       */
+/*   Updated: 2026/02/09 11:46:47 by kalhanaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,5 @@ int	init_settings(t_settings *mysettings)
 		clear_forks (mysettings, mysettings->n_ph);
 		return (-1);
 	}
-	init_mutexes (mysettings);
-	return (1);
+	return (init_mutexes (mysettings));
 }
